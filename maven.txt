@@ -1,0 +1,55 @@
+
+
+
+		使用maven
+
+			更改其config.xml
+				
+
+
+				1、设置本地仓库   localRepository
+				
+
+
+				2、设置使用阿里镜像  
+						   <mirror>      
+							  <id>nexus-aliyun</id>    
+							  <name>nexus-aliyun</name>  
+							  <url>http://maven.aliyun.com/nexus/content/groups/public</url>    
+							  <mirrorOf>central</mirrorOf>      
+						   </mirror> 
+
+
+
+				3、指定使用的jdk版本
+
+					方式1、  在pom.xml中设置
+<build>  
+    <plugins>  
+        <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>  
+                <version>3.1</version>  
+                <configuration>  
+                    <source>1.8</source>  
+                    <target>1.8</target>  
+                </configuration>  
+            </plugin>  
+        </plugins>  
+</build>
+
+
+
+					方式2、   在maven的setting文件中设置
+<profile>    
+    <id>jdk-1.8</id>    
+     <activation>    
+        <activeByDefault>true</activeByDefault>    
+        <jdk>1.8</jdk>    
+      </activation>    
+<properties>    
+<maven.compiler.source>1.8</maven.compiler.source>    
+<maven.compiler.target>1.8</maven.compiler.target>    
+<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>    
+</properties>    
+</profile>
